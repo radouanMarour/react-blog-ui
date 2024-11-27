@@ -1,0 +1,29 @@
+.sidebar {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 1rem;
+    border-radius: 5px;
+    flex: 0 0 320px;
+    height: fit-content;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 0.5rem 0;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0 5px 5px 0;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li:hover {
+    background-color: var(--background-color);
+}
+
+.sidebar ul li.active {
+    border-left: 3px solid #ffffff;
+}

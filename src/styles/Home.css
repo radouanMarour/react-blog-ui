@@ -1,0 +1,25 @@
+.home {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 2rem;
+}
+
+.main-content {
+    flex: 1;
+}
+
+/* Adjust layout for smaller screens */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        margin-bottom: 1rem;
+    }
+}

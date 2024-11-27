@@ -1,0 +1,66 @@
+.mobile-header {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.mobile-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+.menu-toggle {
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.mobile-header .nav-links {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-color);
+    padding: 1rem;
+}
+
+.nav-links a {
+    margin: 0.5rem 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.logout-btn {
+    margin-top: 0.5rem;
+    background-color: var(--background-color);
+    border: none;
+    color: var(--secondary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .mobile-header {
+        display: block;
+    }
+}

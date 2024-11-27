@@ -1,0 +1,46 @@
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.blog-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    width: calc(33.333% - 1rem);
+    /* 3 cards per row */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.blog-card:hover {
+    transform: translateY(-3px);
+}
+
+.blog-card h3 {
+    font-size: 1.25rem;
+    margin: 0;
+    color: #333;
+}
+
+.blog-card p {
+    margin: 0.5rem 0 0;
+    color: #666;
+}
+
+/* Responsive for mobile screens */
+@media (max-width: 768px) {
+    .blog-card {
+        width: calc(50% - 1rem);
+        /* 2 cards per row */
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-card {
+        width: 100%;
+        /* 1 card per row */
+    }
+}
