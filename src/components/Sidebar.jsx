@@ -26,6 +26,12 @@ const Sidebar = () => {
         <aside className="sidebar">
             <Search />
             <ul>
+                <li
+                    onClick={() => selectCategory("All")}
+                    className={selectedCategory === "All" && "active"}
+                >
+                    All
+                </li>
                 {categories.map((category) => (
                     <li
                         key={category._id}

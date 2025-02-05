@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useToast } from "../context/";
+import MarkdownIt from 'markdown-it';
 
 import "../styles/BlogDetails.css";
 import API from "../api";
@@ -11,7 +12,7 @@ const BlogDetails = () => {
     const [blog, setBlog] = useState(null);
     const [loading, setLoading] = useState(true);
     const { notifyError } = useToast()
-
+    const mdParser = new MarkdownIt();
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -53,7 +54,7 @@ const BlogDetails = () => {
                 <span className="blog-date">{new Date(blog.createdAt).toLocaleDateString()}</span>
             </div>
             <div className="blog-content">
-                <p>{blog.content}</p>
+                <div dangerouslySetInnerHTML={{ __html: mdParser.render(blog.content) }} />
             </div>
             <CommentSection postId={blog?._id} />
             <div>

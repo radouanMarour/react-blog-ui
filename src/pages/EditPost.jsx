@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth, useToast } from '../context/';
 import API from '../api';
+import MarkdownIt from 'markdown-it';
+import MdEditor from 'react-markdown-editor-lite';
+import 'react-markdown-editor-lite/lib/index.css';
 import '../styles/EditPost.css';
 
 const EditPost = () => {
@@ -17,6 +20,7 @@ const EditPost = () => {
         image: null,
     });
     const [categories, setCategories] = useState([]);
+    const mdParser = new MarkdownIt();
 
     // Fetch categories and post details on mount
     useEffect(() => {
@@ -60,6 +64,10 @@ const EditPost = () => {
         setFormData({ ...formData, image: e.target.files[0] });
     };
 
+    const handleEditorChange = ({ text }) => {
+        setFormData({ ...formData, content: text });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -88,7 +96,7 @@ const EditPost = () => {
     return (
         <div className="edit-post-page">
             <h1>Edit Post</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="edit-post-form">
                 <div className="form-group">
                     <label htmlFor="title">Title</label>
                     <input
@@ -102,12 +110,11 @@ const EditPost = () => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="content">Content</label>
-                    <textarea
-                        id="content"
-                        name="content"
+                    <MdEditor
+                        style={{ height: "300px" }}
+                        renderHTML={text => mdParser.render(text)}
+                        onChange={handleEditorChange}
                         value={formData.content}
-                        onChange={handleInputChange}
-                        required
                     />
                 </div>
                 <div className="form-group">
@@ -117,6 +124,7 @@ const EditPost = () => {
                         name="category"
                         value={formData.category}
                         onChange={handleInputChange}
+                        required
                     >
                         <option value="">Select a category</option>
                         {categories.map((cat) => (
@@ -127,7 +135,7 @@ const EditPost = () => {
                     </select>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="image">Image</label>
+                    <label htmlFor="image">Image (Leave empty to keep current image)</label>
                     <input
                         type="file"
                         id="image"
@@ -136,9 +144,11 @@ const EditPost = () => {
                         onChange={handleFileChange}
                     />
                 </div>
-                <button type="submit" className="edit-post-btn">
-                    Update Post
-                </button>
+                <div className="form-group">
+                    <button type="submit" className="edit-post-btn">
+                        Update Post
+                    </button>
+                </div>
             </form>
         </div>
     );
